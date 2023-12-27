@@ -1,0 +1,19 @@
+version: 1
+
+seeds:
+  - name: cloudnews
+  description: Raw data including news articles with date an name
+  columns:
+    - name: name
+      tests:
+        - not_null
+    - name: link
+      tests:
+        - not_null
+        - unique
+    - name: date
+      tests:
+        - not_null
+    - name: source
+      tests:
+        - not_null
