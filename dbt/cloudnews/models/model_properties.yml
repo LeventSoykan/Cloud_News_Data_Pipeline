@@ -1,0 +1,24 @@
+version: 1
+
+models:
+    - name: cloudnews
+      description: Raw data including news articles with date an name
+      columns:
+        - name: name
+          tests:
+            - not_null
+        - name: link
+          tests:
+            - not_null
+            - unique
+        - name: date
+          tests:
+            - not_null
+        - name: source
+          tests:
+            - not_null
+
+sources:
+    - name: raw
+      tables:
+        - name: raw
