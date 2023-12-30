@@ -1,0 +1,14 @@
+cloudnews:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: 143.42.193.56
+      user: postgres
+      password: w8n6Yr3h
+      port: 5432
+      dbname: cloudnewsdb
+      schema: public
+      threads: 1
+      connect_timeout: 30
+
