@@ -2,7 +2,9 @@ version: 1
 
 models:
     - name: cloudnews
-      description: Raw data including news articles with date an name
+      database: cloudnewsdb
+      schema: public
+      description: Final data including news articles with date an name
       columns:
         - name: name
           tests:
@@ -19,6 +21,10 @@ models:
             - not_null
 
 sources:
-    - name: raw
+    - name: raw_data
+      database: cloudnewsdb
+      schema: public
+      description: Raw data including news articles with date an name
       tables:
         - name: raw
+

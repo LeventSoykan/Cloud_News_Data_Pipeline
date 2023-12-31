@@ -1,4 +1,4 @@
 SELECT
-    name, link, source, date::DATE
+    *
 FROM
-    raw.raw
+    {{ source('raw_data', 'raw')}}
