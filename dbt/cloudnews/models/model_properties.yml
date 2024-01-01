@@ -2,21 +2,19 @@ version: 1
 
 models:
     - name: cloudnews
-      database: cloudnewsdb
-      schema: public
       description: Final data including news articles with date an name
       columns:
-        - name: name
+        - name: title
           tests:
             - not_null
-        - name: link
+        - name: url
           tests:
             - not_null
             - unique
-        - name: date
+        - name: source
           tests:
             - not_null
-        - name: source
+        - name: date
           tests:
             - not_null
 
