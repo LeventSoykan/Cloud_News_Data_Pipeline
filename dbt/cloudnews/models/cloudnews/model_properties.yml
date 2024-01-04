@@ -17,6 +17,9 @@ models:
         - name: date
           tests:
             - not_null
+        - name: query_date
+          tests:
+            - not_null
 
 sources:
     - name: raw_data
