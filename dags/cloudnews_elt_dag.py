@@ -13,7 +13,7 @@ default_args = {
 }
 
 dag = DAG(
-    'your_dag',
+    'cloudnews_elt_dag',
     default_args=default_args,
     description='Run Python script and dbt model weekly',
     schedule_interval=timedelta(weeks=1),
@@ -21,8 +21,8 @@ dag = DAG(
 
 # Python script task
 run_python_script = PythonOperator(
-    task_id='run_python_script',
-    python_callable=lambda: print("Running your_python_script.py"),
+    task_id='run_spider',
+    python_callable= scrape_process,
     dag=dag,
 )
 
