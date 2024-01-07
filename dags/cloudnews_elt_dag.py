@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python_operator import PythonOperator, PythonVirtualenvOperator
 from airflow.operators.bash_operator import BashOperator
 from datetime import datetime, timedelta
 from cloud_spider import scrape_process
@@ -20,9 +20,10 @@ dag = DAG(
 )
 
 # Python script task
-run_python_script = PythonOperator(
+run_python_script = PythonVirtualenvOperator(
     task_id='run_spider',
-    python_callable= scrape_process,
+    requirements='scrapy',
+    python_callable=scrape_process,
     dag=dag,
 )
 
