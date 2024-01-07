@@ -4,6 +4,12 @@ With Airflow + DBT ** Python Script + CSV + DBT + Postgesql + Airfloe
 On Azure ** Python Script -- CSV(Blob Storage) -- DataBricks + Pgsql for Azure
 
 Todo: 
+Restart airflow with requirements with DBT
+Use only dbt docker
+Empty scrapy task for only import
+Create scrape with BS4
+
+
 https://www.youtube.com/watch?v=uZy2Lwioi3g
 Recreate airflow image with below packages
 scrapy
