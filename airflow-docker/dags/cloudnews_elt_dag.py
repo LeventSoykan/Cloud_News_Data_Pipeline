@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator, PythonVirtualenvOperator
 from airflow.operators.bash_operator import BashOperator
+from airflow.operators.docker_operator import DockerOperator
 from datetime import datetime, timedelta
 from cloud_spider import scrape_process
 
@@ -20,18 +21,21 @@ dag = DAG(
 )
 
 # Python script task
-run_python_script = PythonVirtualenvOperator(
+run_python_script = PythonOperator(
     task_id='run_spider',
-    requirements='scrapy',
     python_callable=scrape_process,
     dag=dag,
 )
 
 # dbt run task
-run_dbt = BashOperator(
+run_dbt = DockerOperator(
     task_id='run_dbt',
-    bash_command='dbt run --project-dir dbt/',
-    dag=dag,
+    image='dbt-docker',
+    api_version='auto',
+    auto_remove=True,
+    #command='dbt run',
+    docker_url='unix://var/run/docker.sock',
+    network_mode='bridge'
 )
 
 # Set the task order

@@ -34,9 +34,10 @@ class NWSpider(scrapy.Spider):
 
 
 def scrape_process():
-    process = CrawlerProcess()
-    process.crawl(NWSpider)
-    process.start()
+    print('Python process start tested')
+    #process = CrawlerProcess()
+    #process.crawl(NWSpider)
+    #process.start()
 
 
 if __name__ == '__main__':
