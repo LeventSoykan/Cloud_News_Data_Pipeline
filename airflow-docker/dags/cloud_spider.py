@@ -4,10 +4,12 @@ import pandas as pd
 from datetime import datetime as dt
 from sqlalchemy import create_engine
 import os
+from airflow.models import Variable
 
 class NWSpider():
     def __init__(self, url):
-        conn_url = os.environ.get('POSTGRES_CONNECTION_STRING')
+        conn_url = Variable.get('POSTGRES_CONNECTION_STRING')
+        #conn_url = os.environ.get('POSTGRES_CONNECTION_STRING')
         self.engine = create_engine(f'{conn_url}cloudnewsdb')
         self.data = []
         self.url = url
@@ -30,7 +32,10 @@ class NWSpider():
                 })
         df = pd.DataFrame(self.data)
         df.to_sql('raw', self.engine, if_exists='replace')
-
-if __name__ == '__main__':
+        
+def data_extraction():
     spider = NWSpider('https://www.networkworld.com/cloud-computing/')
     spider.extract()
+
+if __name__ == '__main__':
+    data_extraction()

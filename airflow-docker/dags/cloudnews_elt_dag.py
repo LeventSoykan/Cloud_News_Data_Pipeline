@@ -3,7 +3,8 @@ from airflow.operators.python_operator import PythonOperator, PythonVirtualenvOp
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.docker_operator import DockerOperator
 from datetime import datetime, timedelta
-from cloud_spider import scrape_process
+from cloud_spider import data_extraction
+from email_util import send_email
 
 default_args = {
     'owner': 'airflow',
@@ -23,7 +24,7 @@ dag = DAG(
 # Python script task
 run_python_script = PythonOperator(
     task_id='run_spider',
-    python_callable=scrape_process,
+    python_callable=data_extraction,
     dag=dag,
 )
 
@@ -38,5 +39,12 @@ run_dbt = DockerOperator(
     network_mode='bridge'
 )
 
+# Email task
+send_email = PythonOperator(
+    task_id='send_email',
+    python_callable=send_email,
+    dag=dag,
+)
+
 # Set the task order
-run_python_script >> run_dbt
+run_python_script >> run_dbt >> send_email
