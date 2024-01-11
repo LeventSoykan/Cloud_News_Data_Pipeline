@@ -1,10 +1,14 @@
 Data Pipeline project using python and scrapy to get inital data for cloud news from website
 
-With Airflow + DBT ** Python Script + CSV + DBT + Postgesql + Airfloe
-On Azure ** Python Script -- CSV(Blob Storage) -- DataBricks + Pgsql for Azure
-
 Todo: 
-Restart airflow with requirements with DBT
+Get data for last month from 5 websites
+https://www.ciodive.com/topic/cloud/
+https://cloud-computing.tmcnet.com/
+https://www.cloudcomputing-news.net/
+https://www.theguardian.com/technology/cloud-computing
+https://cio.economictimes.indiatimes.com/news/cloud-computing
+
+
 Use only dbt docker
 Empty scrapy task for only import
 Create scrape with BS4
