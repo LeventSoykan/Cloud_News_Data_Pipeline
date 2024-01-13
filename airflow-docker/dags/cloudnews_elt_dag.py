@@ -9,9 +9,9 @@ from email_util import send_email
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2024, 1, 6),
+    'start_date': datetime(2024, 1, 13),
     'retries': 1,
-    'retry_delay': timedelta(minutes=1),
+    'retry_delay': timedelta(weeks=1),
 }
 
 dag = DAG(
