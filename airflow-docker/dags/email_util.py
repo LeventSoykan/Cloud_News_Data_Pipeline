@@ -21,7 +21,7 @@ def send_email():
     m['From'] = sender
     m['To'] = receiver
     m.add_header('Content-Type', 'text/html')
-    m.set_payload(df.to_html(), 'utf8')
+    m.set_payload(create_html(df), 'utf8')
     port = 587  # For SSL
     #email_user = os.environ.get('EMAIL_USER')
     #email_pass = os.environ.get('EMAIL_PASS')
@@ -36,6 +36,29 @@ def send_email():
         server.ehlo()  # Can be omitted
         server.login(email_user, email_pass)
         server.sendmail(sender, receiver, m.as_string())
+
+
+def create_html(df):
+    body = ''
+    for _, row in df.iterrows():
+        body += f"""
+        <div style="border-style: solid; border-width: 3px; background-color: darkslategray;">
+            <a style="display: block; height: 100%; width: 100%; text-decoration: none; color: white" href={row.iloc[1]}>
+                {row.iloc[0]}
+                <p>{row.iloc[3]}, {row.iloc[2]}</p>
+            </a>
+        </div>
+        """
+    html = f"""
+        <head>
+        <meta charset="UTF-8">
+        <title>Cloud News</title>
+    </head>
+    <body>
+        {body}
+    </body>
+    """
+    return html
 
 if __name__ == '__main__':
     send_email()

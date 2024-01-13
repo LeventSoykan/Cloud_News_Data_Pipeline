@@ -37,7 +37,7 @@ class CloudSpider():
         soup = self.get_soup('https://www.ciodive.com/topic/cloud/')
         for li in soup.select('li.row.feed__item'):
             a = li.find_next('h3', attrs={'class': 'feed__title'}).find_next('a')
-            url = a['href']
+            url = 'https://www.ciodive.com/' + a['href']
             title = a.text.strip()
             try:
                 date = li.find_all('span', attrs={'class':'secondary-label'})[1].text
