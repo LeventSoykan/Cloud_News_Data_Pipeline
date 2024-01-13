@@ -1,7 +1,7 @@
 venv/
 dbt/cloudnews/profiles.yml
 .idea/
-.practice-test/
+practice-test/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
