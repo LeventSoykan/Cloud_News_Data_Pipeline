@@ -11,14 +11,14 @@ default_args = {
     'depends_on_past': False,
     'start_date': datetime(2024, 1, 6),
     'retries': 1,
-    'retry_delay': timedelta(minutes=5),
+    'retry_delay': timedelta(minutes=1),
 }
 
 dag = DAG(
     'cloudnews_elt_dag',
     default_args=default_args,
     description='Run Python script and dbt model weekly',
-    schedule_interval=timedelta(weeks=1),
+    schedule_interval=timedelta(days=1),
 )
 
 # Python script task
