@@ -56,6 +56,9 @@ Before you begin, ensure you have met the following requirements:
    Then run the airflow container
    
     ```bash
+
+    * Link for Soda https://medium.com/@karangupta121/soda-data-quality-check-and-alert-monitoring-using-airflow-and-slack-64b1b83f7b0e
+    
     docker compose up
     ```
     
